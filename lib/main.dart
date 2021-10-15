@@ -1,6 +1,5 @@
 import 'package:clean_dictionary/screens/SearchPage.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 
 void main() {
@@ -12,7 +11,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Sizer(builder: (context, orientation, deviceType) {
-      return GetMaterialApp(
+      return MaterialApp(
         title: 'Clean Dictionary',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(

@@ -9,6 +9,9 @@ class AppConstants {
   static const String appName = "Clean Dictionary";
   static const String appVersion = "Version 1.0";
 
+  //api endpoint
+  static const String apiEndpoint = "https://api.dictionaryapi.dev/api/v2/entries/en/";
+
   //about page constants
   static const String aboutPage_MainText_1 = "This is a";
   static const String aboutPage_MainText_2 = "Dictionary.";
@@ -19,6 +22,7 @@ class AppConstants {
   static const String searchPage_MainHeading = "Dictionary";
   static const String searchPage_SubHeading = "Recent";
   static const String searchPage_SearchBoxHint = "search here";
+  static const String searchPage_SearchButtonText = "Search";
 
   //detailed page constants
   static const String detailedPage_Definitions = "Definitions";

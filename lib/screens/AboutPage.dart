@@ -1,7 +1,6 @@
 import 'package:clean_dictionary/constants/app_colors.dart';
 import 'package:clean_dictionary/constants/app_constants.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sizer/sizer.dart';
 
@@ -17,7 +16,7 @@ class AboutPage extends StatelessWidget {
         actions: [
           InkWell(
             onTap: () {
-              Get.back();
+              Navigator.pop(context);
             },
             child: Center(
               child: Padding(

@@ -1,34 +1,34 @@
 import 'package:clean_dictionary/constants/app_colors.dart';
-import 'package:clean_dictionary/constants/app_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sizer/sizer.dart';
 
-Widget searchBox(BuildContext context) {
+Widget searchBox(BuildContext context, TextEditingController controller) {
   return Container(
-    padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
-    decoration: BoxDecoration(
-      color: AppColors.appLightGrey,
-      borderRadius: BorderRadius.circular(8.0),
-    ),
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Icon(
-          Icons.search_rounded,
-          color: AppColors.appGrey,
+    color: Colors.white,
+    child: TextField(
+      controller: controller,
+      autofocus: false,
+      cursorColor: AppColors.appBlack,
+      style: GoogleFonts.poppins(
+        fontSize: 12.sp,
+        fontWeight: FontWeight.normal,
+        color: AppColors.appBlack,
+      ),
+      decoration: InputDecoration(
+        prefixIcon: Icon(Icons.search, color: AppColors.appGrey),
+        filled: true,
+        fillColor: AppColors.appLightGrey,
+        border: OutlineInputBorder(
+          borderSide: BorderSide.none,
+          borderRadius: BorderRadius.circular(8),
         ),
-        SizedBox(width: 8.0),
-        Text(
-          AppConstants.searchPage_SearchBoxHint,
-          style: GoogleFonts.poppins(
-            color: AppColors.appGrey,
-            fontSize: 12.sp,
-            fontWeight: FontWeight.w300,
-          ),
-        )
-      ],
+        hintText: "search here",
+        focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide.none,
+          borderRadius: BorderRadius.circular(8.0),
+        ),
+      ),
     ),
   );
 }
