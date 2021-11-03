@@ -29,11 +29,20 @@ class AppConstants {
   static const String detailedPage_Synonyms = "Synonyms";
   static const String detailedPage_Antonyms = "Antonyms";
   static const String detailedPage_Origin = "Origin";
+  static const String detailedPage_EmptyResult = "-";
 
   //result default constants
   static const String resultDefault = "loading..";
   static const String loremIpsum =
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis efficitur, diam eget euismod tempus, metus purus tempus felis, in elementum arcu libero et velit.";
+
+  //error page constants
+  static const String error_Word = "Word";
+  static const String error_Unavailable = "Unavailable!";
+  static const String error_ConfirmationHeading = "Please make sure you're searching for a valid word.";
+  static const String error_Service = "Service";
+  static const String error_InternetConfirmation = "Please make sure you're connected to the Internet.";
+  static const String error_tapTotRefresh = "Tap to refresh";
 
   //no internet page constants
   static const String noInternetPage_MainHeading = "Service Unavailable";
@@ -54,7 +63,7 @@ class AppConstants {
   static const String popupAbout = "About";
 }
 
-final TextStyle kNavTextStyle = GoogleFonts.poppins(
+final TextStyle kNavTextStyle = GoogleFonts.montserrat(
   fontSize: 10.sp,
   fontWeight: FontWeight.normal,
   color: AppColors.appBlack,

@@ -1,10 +1,13 @@
-import 'package:clean_dictionary/constants/app_colors.dart';
 import 'package:clean_dictionary/constants/app_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sizer/sizer.dart';
 
-class AboutPage extends StatelessWidget {
+class ErrorPage extends StatelessWidget {
+  final statusCode;
+
+  ErrorPage({this.statusCode});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,58 +45,32 @@ class AboutPage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      AppConstants.aboutPage_MainText_1,
+                      statusCode == "500" ? AppConstants.error_Service : AppConstants.error_Word,
                       style: GoogleFonts.playfairDisplay(
                         fontSize: 36.sp,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
+                    // SizedBox(height: 24.0),
                     Text(
-                      AppConstants.aboutPage_MainText_2,
+                      AppConstants.error_Unavailable,
                       style: GoogleFonts.playfairDisplay(
-                        fontSize: 48.sp,
+                        fontSize: 36.sp,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                     SizedBox(height: 24.0),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 4.0),
-                      child: RichText(
-                        text: TextSpan(
-                          text: AppConstants.aboutPage_by + " ",
-                          style: GoogleFonts.montserrat(
-                            fontSize: 12.sp,
-                            fontWeight: FontWeight.normal,
-                            color: AppColors.appGrey,
-                          ),
-                          children: <TextSpan>[
-                            TextSpan(
-                              text: AppConstants.aboutPage_hhs,
-                              style: GoogleFonts.montserrat(
-                                decoration: TextDecoration.underline,
-                              ),
-                            ),
-                          ],
-                        ),
+                    Text(
+                      statusCode == "500" ? AppConstants.error_InternetConfirmation : AppConstants.error_ConfirmationHeading,
+                      style: GoogleFonts.montserrat(
+                        fontSize: 12.sp,
+                        fontWeight: FontWeight.w300,
                       ),
                     ),
+                    SizedBox(height: 32.0),
                   ],
                 ),
               ),
-              Container(
-                height: 80.0,
-                child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    AppConstants.appVersion,
-                    style: TextStyle(
-                      fontSize: 10.sp,
-                      fontWeight: FontWeight.normal,
-                      color: AppColors.appGrey,
-                    ),
-                  ),
-                ),
-              )
             ],
           ),
         ),

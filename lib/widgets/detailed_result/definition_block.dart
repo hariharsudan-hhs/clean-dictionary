@@ -1,10 +1,11 @@
 import 'package:clean_dictionary/constants/app_colors.dart';
 import 'package:clean_dictionary/constants/app_constants.dart';
+import 'package:clean_dictionary/models/result_model.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sizer/sizer.dart';
 
-Widget definitionBlock(BuildContext context) {
+Widget definitionBlock(BuildContext context, List<Definitions> definitions) {
   return Container(
     padding: const EdgeInsets.only(left: 24.0, right: 24.0),
     child: Column(
@@ -13,140 +14,81 @@ Widget definitionBlock(BuildContext context) {
       children: [
         Text(
           AppConstants.detailedPage_Definitions.toUpperCase(),
-          style: GoogleFonts.poppins(
+          style: GoogleFonts.montserrat(
             color: AppColors.appBlack,
-            fontSize: 14.sp,
+            fontSize: 12.sp,
             fontWeight: FontWeight.bold,
           ),
         ),
-        SizedBox(height: 8.0),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              "1",
-              style: GoogleFonts.poppins(
-                color: AppColors.appBlack,
-                fontSize: 12.sp,
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-            SizedBox(width: 8.0),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  AppConstants.resultDefault,
-                  style: GoogleFonts.poppins(
-                    color: AppColors.appBlack,
-                    fontSize: 12.sp,
-                    fontWeight: FontWeight.w300,
-                  ),
-                ),
-                SizedBox(height: 8.0),
-                Text(
-                  AppConstants.resultDefault,
-                  style: GoogleFonts.poppins(
-                    color: AppColors.appGrey,
-                    fontSize: 12.sp,
-                    fontWeight: FontWeight.w300,
-                  ),
-                ),
-                SizedBox(height: 8.0),
-                Row(
-                  children: [
-                    Text(
-                      "1",
-                      style: GoogleFonts.poppins(
-                        color: AppColors.appBlack,
-                        fontSize: 12.sp,
-                        fontWeight: FontWeight.w300,
-                        fontStyle: FontStyle.italic,
-                      ),
+        SizedBox(height: 16.0),
+        ListView.builder(
+            physics: new NeverScrollableScrollPhysics(),
+            shrinkWrap: true,
+            itemCount: definitions.length > 2 ? 2 : definitions.length,
+            itemBuilder: (context, mainItem) {
+              return Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    (mainItem + 1).toString() + ".",
+                    style: GoogleFonts.montserrat(
+                      color: AppColors.appBlack,
+                      fontSize: 12.sp,
+                      fontWeight: FontWeight.w600,
+                      height: 1.4,
                     ),
-                    SizedBox(width: 16.0),
-                    Text(
-                      "2",
-                      style: GoogleFonts.poppins(
-                        color: AppColors.appBlack,
-                        fontSize: 12.sp,
-                        fontWeight: FontWeight.w300,
-                        fontStyle: FontStyle.italic,
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(height: 8.0),
-              ],
-            ),
-          ],
-        ),
-        SizedBox(height: 32.0),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              "2",
-              style: GoogleFonts.poppins(
-                color: AppColors.appBlack,
-                fontSize: 12.sp,
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-            SizedBox(width: 8.0),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  AppConstants.resultDefault,
-                  style: GoogleFonts.poppins(
-                    color: AppColors.appBlack,
-                    fontSize: 12.sp,
-                    fontWeight: FontWeight.w300,
                   ),
-                ),
-                SizedBox(height: 8.0),
-                Text(
-                  AppConstants.resultDefault,
-                  style: GoogleFonts.poppins(
-                    color: AppColors.appGrey,
-                    fontSize: 12.sp,
-                    fontWeight: FontWeight.w300,
+                  SizedBox(width: 16.0),
+                  Expanded(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          definitions[mainItem].definition,
+                          style: GoogleFonts.montserrat(
+                            color: AppColors.appBlack,
+                            fontSize: 12.sp,
+                            fontWeight: FontWeight.w300,
+                            height: 1.4,
+                          ),
+                        ),
+                        SizedBox(height: 16.0),
+                        Text(
+                          "\"" + definitions[mainItem].example + "\"",
+                          style: GoogleFonts.montserrat(
+                            color: AppColors.appGrey,
+                            fontSize: 12.sp,
+                            fontWeight: FontWeight.w300,
+                            height: 1.4,
+                          ),
+                        ),
+                        SizedBox(height: 16.0),
+                        Wrap(
+                          spacing: 24.0,
+                          runSpacing: 8.0,
+                          children: List.generate(
+                            definitions[mainItem].synonyms.length > 6 ? 6 : definitions[mainItem].synonyms.length,
+                            (index) => Text(
+                              definitions[mainItem].synonyms[index],
+                              style: GoogleFonts.montserrat(
+                                color: AppColors.appBlack,
+                                fontSize: 10.sp,
+                                fontWeight: FontWeight.w300,
+                                fontStyle: FontStyle.italic,
+                                height: 1.4,
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 32.0),
+                      ],
+                    ),
                   ),
-                ),
-                SizedBox(height: 8.0),
-                Row(
-                  children: [
-                    Text(
-                      "1",
-                      style: GoogleFonts.poppins(
-                        color: AppColors.appBlack,
-                        fontSize: 12.sp,
-                        fontWeight: FontWeight.w300,
-                        fontStyle: FontStyle.italic,
-                      ),
-                    ),
-                    SizedBox(width: 16.0),
-                    Text(
-                      "2",
-                      style: GoogleFonts.poppins(
-                        color: AppColors.appBlack,
-                        fontSize: 12.sp,
-                        fontWeight: FontWeight.w300,
-                        fontStyle: FontStyle.italic,
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(height: 8.0),
-              ],
-            ),
-          ],
-        ),
+                ],
+              );
+            }),
       ],
     ),
   );

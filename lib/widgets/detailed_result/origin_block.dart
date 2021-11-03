@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sizer/sizer.dart';
 
-Widget originBlock(BuildContext context) {
+Widget originBlock(BuildContext context, String origin) {
   return Container(
     padding: const EdgeInsets.only(left: 24.0, right: 24.0),
     child: Column(
@@ -13,22 +13,24 @@ Widget originBlock(BuildContext context) {
       children: [
         Text(
           AppConstants.detailedPage_Origin.toUpperCase(),
-          style: GoogleFonts.poppins(
+          style: GoogleFonts.montserrat(
             color: AppColors.appBlack,
-            fontSize: 14.sp,
+            fontSize: 12.sp,
             fontWeight: FontWeight.bold,
+            height: 1.4,
           ),
         ),
-        SizedBox(height: 8.0),
+        SizedBox(height: 16.0),
         Text(
-          AppConstants.loremIpsum,
-          style: GoogleFonts.poppins(
+          origin.isNotEmpty ? origin : AppConstants.loremIpsum,
+          style: GoogleFonts.montserrat(
             color: AppColors.appBlack,
             fontWeight: FontWeight.w300,
             fontSize: 12.sp,
+            height: 1.4,
           ),
         ),
-        SizedBox(height: 24.0),
+        SizedBox(height: 32.0),
       ],
     ),
   );

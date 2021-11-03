@@ -10,7 +10,7 @@ Widget searchBox(BuildContext context, TextEditingController controller) {
       controller: controller,
       autofocus: false,
       cursorColor: AppColors.appBlack,
-      style: GoogleFonts.poppins(
+      style: GoogleFonts.montserrat(
         fontSize: 12.sp,
         fontWeight: FontWeight.normal,
         color: AppColors.appBlack,

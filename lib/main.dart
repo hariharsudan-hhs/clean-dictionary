@@ -1,3 +1,5 @@
+// @dart=2.11
+
 import 'package:clean_dictionary/screens/SearchPage.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';

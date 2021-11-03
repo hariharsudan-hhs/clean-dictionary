@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sizer/sizer.dart';
 
-Widget simpleResult(BuildContext context) {
+Widget simpleResult(BuildContext context, String word, String phonetic, String partOfSpeech, String definition) {
   return Padding(
     padding: const EdgeInsets.only(left: 24.0, right: 24.0),
     child: Container(
@@ -17,7 +17,7 @@ Widget simpleResult(BuildContext context) {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  AppConstants.resultDefault,
+                  word.isNotEmpty ? word : AppConstants.resultDefault,
                   style: GoogleFonts.playfairDisplay(
                     fontSize: 40.sp,
                     fontWeight: FontWeight.bold,
@@ -30,15 +30,15 @@ Widget simpleResult(BuildContext context) {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
-                      "[" + AppConstants.resultDefault + "]",
-                      style: GoogleFonts.playfairDisplay(
+                      "[" + (phonetic.isNotEmpty ? phonetic : AppConstants.resultDefault) + "]",
+                      style: GoogleFonts.notoSerif(
                         fontSize: 20.sp,
                         fontWeight: FontWeight.w200,
                         color: AppColors.appBlack,
                       ),
                     ),
                     IconButton(
-                      padding: const EdgeInsets.only(top: 8.0),
+                      padding: const EdgeInsets.only(top: 4.0),
                       onPressed: null,
                       icon: Icon(
                         Icons.volume_up,
@@ -68,11 +68,12 @@ Widget simpleResult(BuildContext context) {
                         bottom: 8.0,
                       ),
                       child: Text(
-                        AppConstants.resultDefault,
-                        style: GoogleFonts.poppins(
+                        partOfSpeech.isNotEmpty ? partOfSpeech : AppConstants.resultDefault,
+                        style: GoogleFonts.montserrat(
                           fontSize: 12.sp,
                           fontWeight: FontWeight.normal,
                           color: AppColors.appGrey,
+                          height: 1.4,
                         ),
                       ),
                     ),
@@ -86,11 +87,12 @@ Widget simpleResult(BuildContext context) {
                         bottom: 8.0,
                       ),
                       child: Text(
-                        AppConstants.loremIpsum,
-                        style: GoogleFonts.poppins(
+                        definition.isNotEmpty ? definition : AppConstants.loremIpsum,
+                        style: GoogleFonts.montserrat(
                           fontSize: 12.sp,
                           fontWeight: FontWeight.normal,
                           color: AppColors.appGrey,
+                          height: 1.4,
                         ),
                       ),
                     ),
