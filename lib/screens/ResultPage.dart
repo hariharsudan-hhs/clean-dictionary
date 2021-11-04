@@ -2,6 +2,7 @@ import 'package:clean_dictionary/constants/app_colors.dart';
 import 'package:clean_dictionary/constants/app_constants.dart';
 import 'package:clean_dictionary/models/result_model.dart';
 import 'package:clean_dictionary/screens/AboutPage.dart';
+import 'package:clean_dictionary/transition/FadeRoute.dart';
 import 'package:clean_dictionary/widgets/detailed_result/detailed_result.dart';
 import 'package:clean_dictionary/widgets/simple_result/simple_result.dart';
 import 'package:flutter/material.dart';
@@ -45,10 +46,7 @@ class _ResultPageState extends State<ResultPage> {
       case AppConstants.popupShare:
         break;
       case AppConstants.popupAbout:
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => AboutPage()),
-        );
+        Navigator.push(context, FadeRoute(page: AboutPage()));
         break;
     }
   }
@@ -100,11 +98,20 @@ class _ResultPageState extends State<ResultPage> {
         ),
         actions: [
           PopupMenuButton<String>(
-            icon: Icon(
-              Icons.more_vert,
-              color: AppColors.appBlack,
-              size: 28.0,
+            child: Center(
+              child: Padding(
+                padding: const EdgeInsets.only(left: 24.0, right: 24.0),
+                child: Text(
+                  AppConstants.navMore,
+                  style: kNavTextStyle,
+                ),
+              ),
             ),
+            // icon: Icon(
+            //   Icons.more_vert,
+            //   color: AppColors.appBlack,
+            //   size: 28.0,
+            // ),
             onSelected: handlePopUpClick,
             itemBuilder: (BuildContext context) {
               return {

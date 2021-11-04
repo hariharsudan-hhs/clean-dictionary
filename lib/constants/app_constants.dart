@@ -53,6 +53,7 @@ class AppConstants {
   static const String navClose = "Close";
   static const String navAbout = "About";
   static const String navBack = "Back";
+  static const String navMore = "More";
 
   //three pointer popup constants
   static const String popupSwitchToDetailedView = "Switch to Detailed View";

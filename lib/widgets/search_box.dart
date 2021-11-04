@@ -7,6 +7,8 @@ Widget searchBox(BuildContext context, TextEditingController controller) {
   return Container(
     color: Colors.white,
     child: TextField(
+      cursorHeight: 22.0,
+      cursorWidth: 1.4,
       controller: controller,
       autofocus: false,
       cursorColor: AppColors.appBlack,
@@ -17,6 +19,16 @@ Widget searchBox(BuildContext context, TextEditingController controller) {
       ),
       decoration: InputDecoration(
         prefixIcon: Icon(Icons.search, color: AppColors.appGrey),
+        suffixIcon: AnimatedOpacity(
+          opacity: controller.text.isNotEmpty ? 1.0 : 0.0,
+          duration: const Duration(milliseconds: 200),
+          child: GestureDetector(
+            onTap: () {
+              if (controller.text.isNotEmpty) controller.clear();
+            },
+            child: Icon(Icons.clear, color: AppColors.appGrey),
+          ),
+        ),
         filled: true,
         fillColor: AppColors.appLightGrey,
         border: OutlineInputBorder(

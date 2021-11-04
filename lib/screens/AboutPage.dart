@@ -1,5 +1,6 @@
 import 'package:clean_dictionary/constants/app_colors.dart';
 import 'package:clean_dictionary/constants/app_constants.dart';
+import 'package:delayed_display/delayed_display.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sizer/sizer.dart';
@@ -33,68 +34,73 @@ class AboutPage extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.only(left: 24.0, right: 24.0),
         child: Container(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Expanded(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      AppConstants.aboutPage_MainText_1,
-                      style: GoogleFonts.playfairDisplay(
-                        fontSize: 36.sp,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    Text(
-                      AppConstants.aboutPage_MainText_2,
-                      style: GoogleFonts.playfairDisplay(
-                        fontSize: 48.sp,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    SizedBox(height: 24.0),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 4.0),
-                      child: RichText(
-                        text: TextSpan(
-                          text: AppConstants.aboutPage_by + " ",
-                          style: GoogleFonts.montserrat(
-                            fontSize: 12.sp,
-                            fontWeight: FontWeight.normal,
-                            color: AppColors.appGrey,
-                          ),
-                          children: <TextSpan>[
-                            TextSpan(
-                              text: AppConstants.aboutPage_hhs,
-                              style: GoogleFonts.montserrat(
-                                decoration: TextDecoration.underline,
-                              ),
-                            ),
-                          ],
+          child: DelayedDisplay(
+            delay: Duration(milliseconds: 300),
+            fadingDuration: Duration(milliseconds: 300),
+            slidingBeginOffset: const Offset(0.0, 0.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Expanded(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        AppConstants.aboutPage_MainText_1,
+                        style: GoogleFonts.playfairDisplay(
+                          fontSize: 36.sp,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
-                    ),
-                  ],
-                ),
-              ),
-              Container(
-                height: 80.0,
-                child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    AppConstants.appVersion,
-                    style: TextStyle(
-                      fontSize: 10.sp,
-                      fontWeight: FontWeight.normal,
-                      color: AppColors.appGrey,
-                    ),
+                      Text(
+                        AppConstants.aboutPage_MainText_2,
+                        style: GoogleFonts.playfairDisplay(
+                          fontSize: 48.sp,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      SizedBox(height: 24.0),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 4.0),
+                        child: RichText(
+                          text: TextSpan(
+                            text: AppConstants.aboutPage_by + " ",
+                            style: GoogleFonts.montserrat(
+                              fontSize: 12.sp,
+                              fontWeight: FontWeight.normal,
+                              color: AppColors.appGrey,
+                            ),
+                            children: <TextSpan>[
+                              TextSpan(
+                                text: AppConstants.aboutPage_hhs,
+                                style: GoogleFonts.montserrat(
+                                  decoration: TextDecoration.underline,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-              )
-            ],
+                Container(
+                  height: 80.0,
+                  child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      AppConstants.appVersion,
+                      style: TextStyle(
+                        fontSize: 10.sp,
+                        fontWeight: FontWeight.normal,
+                        color: AppColors.appGrey,
+                      ),
+                    ),
+                  ),
+                )
+              ],
+            ),
           ),
         ),
       ),
