@@ -115,16 +115,18 @@ class _DetailedResultState extends State<DetailedResult> {
                           color: AppColors.appBlack,
                         ),
                       ),
-                      IconButton(
-                        splashRadius: 24.0,
-                        padding: const EdgeInsets.only(top: 4.0),
-                        onPressed: () => handlePhoneticAudio(),
-                        icon: Icon(
-                          Icons.volume_up,
-                          color: AppColors.appBlack,
-                          size: 24.0,
-                        ),
-                      )
+                      (widget.phoneticAudio != AppConstants.detailedPage_EmptyResult)
+                          ? IconButton(
+                              splashRadius: 24.0,
+                              padding: const EdgeInsets.only(top: 4.0),
+                              onPressed: () => handlePhoneticAudio(),
+                              icon: Icon(
+                                Icons.volume_up,
+                                color: AppColors.appBlack,
+                                size: 24.0,
+                              ),
+                            )
+                          : Container(),
                     ],
                   ),
                 ],

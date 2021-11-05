@@ -44,6 +44,9 @@ dependencies:
   #just audio
   just_audio: ^0.9.16
 
+  #animated text kit
+  animated_text_kit: ^4.2.1
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

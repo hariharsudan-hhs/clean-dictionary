@@ -55,17 +55,18 @@ class _ResultPageState extends State<ResultPage> {
   void buildContent() {
     final result = widget.resultModel;
 
-    word = result.word;
-    phonetic = result.phonetic;
-    phoneticAudio = result.phonetics[0].audio;
-    origin = result.origin;
-    partOfSpeech = result.meanings[0].partOfSpeech;
-    simpleDefinition = result.meanings[0].definitions[0].definition;
+    word = result.word ?? AppConstants.detailedPage_EmptyResult;
+    phonetic = result.phonetic ?? AppConstants.detailedPage_EmptyResult;
+    phoneticAudio = result.phonetics[0].audio ?? AppConstants.detailedPage_EmptyResult;
+    origin = result.origin ?? AppConstants.detailedPage_EmptyResult;
+    partOfSpeech = result.meanings[0].partOfSpeech ?? AppConstants.detailedPage_EmptyResult;
+    simpleDefinition = result.meanings[0].definitions[0].definition ?? AppConstants.detailedPage_EmptyResult;
+    print(phoneticAudio);
     // final example = result.meanings[0].definitions[0].example;
     // final List<String> synonyms = result.meanings[0].definitions[0].synonyms;
     // final List<String> antonyms = result.meanings[0].definitions[0].antonyms;
 
-    definitions = result.meanings[0].definitions;
+    definitions = result.meanings[0].definitions ?? [];
 
     // simpleModel = new SimpleModel(word, phonetic, partOfSpeech, definition);
     // detailedModel = new DetailedModel(word, phonetic, partOfSpeech, definitions, origin);

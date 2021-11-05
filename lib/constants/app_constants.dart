@@ -19,7 +19,7 @@ class AppConstants {
   static const String aboutPage_hhs = "HHS";
 
   //search page constants
-  static const String searchPage_MainHeading = "Dictionary";
+  static const String searchPage_MainHeading = "Dictionary.";
   static const String searchPage_SubHeading = "Recent";
   static const String searchPage_SearchBoxHint = "search here";
   static const String searchPage_SearchButtonText = "Search";

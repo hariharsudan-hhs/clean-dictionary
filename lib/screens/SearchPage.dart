@@ -1,3 +1,4 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:clean_dictionary/animation/ShakeWidget.dart';
 import 'package:clean_dictionary/api/DictionaryApi.dart';
 import 'package:clean_dictionary/constants/app_colors.dart';
@@ -125,12 +126,25 @@ class _SearchPageState extends State<SearchPage> with TickerProviderStateMixin {
                               mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(
-                                  AppConstants.searchPage_MainHeading,
-                                  style: GoogleFonts.playfairDisplay(
-                                    fontSize: 36.sp,
-                                    fontWeight: FontWeight.bold,
-                                  ),
+                                // Text(
+                                //   AppConstants.searchPage_MainHeading,
+                                //   style: GoogleFonts.playfairDisplay(
+                                //     fontSize: 36.sp,
+                                //     fontWeight: FontWeight.bold,
+                                //   ),
+                                // ),
+                                AnimatedTextKit(
+                                  totalRepeatCount: 1,
+                                  animatedTexts: [
+                                    TypewriterAnimatedText(
+                                      AppConstants.searchPage_MainHeading,
+                                      textStyle: GoogleFonts.playfairDisplay(
+                                        fontSize: 36.sp,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                      speed: const Duration(milliseconds: 100),
+                                    ),
+                                  ],
                                 ),
                                 SizedBox(height: 24.0),
                                 Container(
