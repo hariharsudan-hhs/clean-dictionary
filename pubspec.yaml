@@ -41,6 +41,9 @@ dependencies:
   #delayed display
   delayed_display: ^2.0.0
 
+  #just audio
+  just_audio: ^0.9.16
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

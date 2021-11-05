@@ -22,7 +22,7 @@ Widget originBlock(BuildContext context, String origin) {
         ),
         SizedBox(height: 16.0),
         Text(
-          origin.isNotEmpty ? origin : AppConstants.loremIpsum,
+          origin.isNotEmpty ? origin : AppConstants.detailedPage_EmptyResult,
           style: GoogleFonts.montserrat(
             color: AppColors.appBlack,
             fontWeight: FontWeight.w300,

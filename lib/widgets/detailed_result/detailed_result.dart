@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:clean_dictionary/constants/app_colors.dart';
 import 'package:clean_dictionary/constants/app_constants.dart';
 import 'package:clean_dictionary/models/result_model.dart';
@@ -7,23 +9,55 @@ import 'package:clean_dictionary/widgets/detailed_result/origin_block.dart';
 import 'package:delayed_display/delayed_display.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:just_audio/just_audio.dart';
 import 'package:sizer/sizer.dart';
 
-class DetailedResult extends StatelessWidget {
+class DetailedResult extends StatefulWidget {
   final String word;
   final String phonetic;
+  final String phoneticAudio;
   final String origin;
   final String partOfSpeech;
   final List<Definitions> definitions;
 
-  DetailedResult({required this.word, required this.phonetic, required this.origin, required this.partOfSpeech, required this.definitions});
+  DetailedResult(
+      {required this.word, required this.phonetic, required this.phoneticAudio, required this.origin, required this.partOfSpeech, required this.definitions});
+
+  @override
+  _DetailedResultState createState() => _DetailedResultState();
+}
+
+class _DetailedResultState extends State<DetailedResult> {
+  late AudioPlayer audioPlayer;
+
+  @override
+  void initState() {
+    audioPlayer = AudioPlayer();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    audioPlayer.dispose();
+    super.dispose();
+  }
+
+  void handlePhoneticAudio() async {
+    final url = "https:" + widget.phoneticAudio;
+    try {
+      await audioPlayer.setUrl(url);
+      audioPlayer.play();
+    } catch (e) {
+      log(e.toString());
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     final List<String> synonymList = [];
     final List<String> antonymList = [];
 
-    definitions.forEach((element) {
+    widget.definitions.forEach((element) {
       for (String synonym in element.synonyms) {
         synonymList.add(synonym);
       }
@@ -51,7 +85,7 @@ class DetailedResult extends StatelessWidget {
                   SizedBox(height: 16.0),
                   RichText(
                     text: TextSpan(
-                        text: word.isNotEmpty ? word : AppConstants.resultDefault,
+                        text: widget.word.isNotEmpty ? widget.word : AppConstants.resultDefault,
                         style: GoogleFonts.playfairDisplay(
                           fontSize: 36.sp,
                           fontWeight: FontWeight.bold,
@@ -59,7 +93,7 @@ class DetailedResult extends StatelessWidget {
                         ),
                         children: [
                           TextSpan(
-                            text: partOfSpeech.isNotEmpty ? " (" + partOfSpeech + ")" : "",
+                            text: widget.partOfSpeech.isNotEmpty ? " (" + widget.partOfSpeech + ")" : "",
                             style: GoogleFonts.montserrat(
                               fontSize: 12.sp,
                               fontWeight: FontWeight.w300,
@@ -74,7 +108,7 @@ class DetailedResult extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Text(
-                        "[" + (phonetic.isNotEmpty ? phonetic : AppConstants.resultDefault) + "]",
+                        "[" + (widget.phonetic.isNotEmpty ? widget.phonetic : AppConstants.resultDefault) + "]",
                         style: GoogleFonts.notoSerif(
                           fontSize: 16.sp,
                           fontWeight: FontWeight.w200,
@@ -82,8 +116,9 @@ class DetailedResult extends StatelessWidget {
                         ),
                       ),
                       IconButton(
+                        splashRadius: 24.0,
                         padding: const EdgeInsets.only(top: 4.0),
-                        onPressed: null,
+                        onPressed: () => handlePhoneticAudio(),
                         icon: Icon(
                           Icons.volume_up,
                           color: AppColors.appBlack,
@@ -96,7 +131,7 @@ class DetailedResult extends StatelessWidget {
               ),
             ),
             SizedBox(height: 40.0),
-            definitionBlock(context, definitions),
+            definitionBlock(context, widget.definitions),
             SizedBox(height: 8.0),
             Container(
               padding: const EdgeInsets.only(left: 24.0, right: 24.0),
@@ -117,7 +152,7 @@ class DetailedResult extends StatelessWidget {
               ),
             ),
             SizedBox(height: 40.0),
-            originBlock(context, origin),
+            originBlock(context, widget.origin),
           ],
         ),
       ),

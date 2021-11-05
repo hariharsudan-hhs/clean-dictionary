@@ -45,33 +45,37 @@ Widget definitionBlock(BuildContext context, List<Definitions> definitions) {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          definitions[mainItem].definition,
-                          style: GoogleFonts.montserrat(
-                            color: AppColors.appBlack,
-                            fontSize: 12.sp,
-                            fontWeight: FontWeight.w300,
-                            height: 1.4,
-                          ),
-                        ),
-                        SizedBox(height: 16.0),
-                        Text(
-                          "\"" + definitions[mainItem].example + "\"",
-                          style: GoogleFonts.montserrat(
-                            color: AppColors.appGrey,
-                            fontSize: 12.sp,
-                            fontWeight: FontWeight.w300,
-                            height: 1.4,
-                          ),
-                        ),
-                        SizedBox(height: 16.0),
+                        definitions[mainItem].definition != null
+                            ? Text(
+                                definitions[mainItem].definition,
+                                style: GoogleFonts.montserrat(
+                                  color: AppColors.appBlack,
+                                  fontSize: 12.sp,
+                                  fontWeight: FontWeight.w300,
+                                  height: 1.4,
+                                ),
+                              )
+                            : Container(),
+                        definitions[mainItem].definition != null ? SizedBox(height: 16.0) : Container(),
+                        definitions[mainItem].example != null
+                            ? Text(
+                                "\"" + definitions[mainItem].example + "\"",
+                                style: GoogleFonts.montserrat(
+                                  color: AppColors.appGrey,
+                                  fontSize: 12.sp,
+                                  fontWeight: FontWeight.w300,
+                                  height: 1.4,
+                                ),
+                              )
+                            : Container(),
+                        definitions[mainItem].example != null ? SizedBox(height: 16.0) : Container(),
                         Wrap(
                           spacing: 24.0,
                           runSpacing: 8.0,
                           children: List.generate(
                             definitions[mainItem].synonyms.length > 6 ? 6 : definitions[mainItem].synonyms.length,
                             (index) => Text(
-                              definitions[mainItem].synonyms[index],
+                              definitions[mainItem].synonyms[index]!,
                               style: GoogleFonts.montserrat(
                                 color: AppColors.appBlack,
                                 fontSize: 10.sp,

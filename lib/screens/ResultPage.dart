@@ -23,6 +23,7 @@ class _ResultPageState extends State<ResultPage> {
   // late DetailedModel detailedModel;
   late String word;
   late String phonetic;
+  late String phoneticAudio;
   late String origin;
   late String partOfSpeech;
   late String simpleDefinition;
@@ -56,6 +57,7 @@ class _ResultPageState extends State<ResultPage> {
 
     word = result.word;
     phonetic = result.phonetic;
+    phoneticAudio = result.phonetics[0].audio;
     origin = result.origin;
     partOfSpeech = result.meanings[0].partOfSpeech;
     simpleDefinition = result.meanings[0].definitions[0].definition;
@@ -135,16 +137,17 @@ class _ResultPageState extends State<ResultPage> {
         ],
       ),
       body: _isSimple
-          ? simpleResult(
-              context,
-              word,
-              phonetic,
-              partOfSpeech,
-              simpleDefinition,
+          ? SimpleResult(
+              word: word,
+              phonetic: phonetic,
+              phoneticAudio: phoneticAudio,
+              partOfSpeech: partOfSpeech,
+              definition: simpleDefinition,
             )
           : DetailedResult(
               word: word,
               phonetic: phonetic,
+              phoneticAudio: phoneticAudio,
               origin: origin,
               partOfSpeech: partOfSpeech,
               definitions: definitions,
