@@ -1,6 +1,5 @@
 import 'dart:developer';
 
-import 'package:clean_dictionary/constants/app_colors.dart';
 import 'package:clean_dictionary/constants/app_constants.dart';
 import 'package:delayed_display/delayed_display.dart';
 import 'package:flutter/material.dart';
@@ -69,7 +68,7 @@ class _SimpleResultState extends State<SimpleResult> {
                       style: GoogleFonts.playfairDisplay(
                         fontSize: 40.sp,
                         fontWeight: FontWeight.bold,
-                        color: AppColors.appBlack,
+                        color: Theme.of(context).primaryColor,
                       ),
                     ),
                     SizedBox(height: 8.0),
@@ -82,7 +81,7 @@ class _SimpleResultState extends State<SimpleResult> {
                           style: GoogleFonts.notoSerif(
                             fontSize: 20.sp,
                             fontWeight: FontWeight.w200,
-                            color: AppColors.appBlack,
+                            color: Theme.of(context).primaryColor,
                           ),
                         ),
                         (widget.phoneticAudio != AppConstants.detailedPage_EmptyResult)
@@ -92,7 +91,7 @@ class _SimpleResultState extends State<SimpleResult> {
                                 onPressed: () => handlePhoneticAudio(),
                                 icon: Icon(
                                   Icons.volume_up,
-                                  color: AppColors.appBlack,
+                                  color: Theme.of(context).primaryColor,
                                   size: 24.0,
                                 ),
                               )
@@ -126,14 +125,14 @@ class _SimpleResultState extends State<SimpleResult> {
                                 style: GoogleFonts.montserrat(
                                   fontSize: 12.sp,
                                   fontWeight: FontWeight.normal,
-                                  color: AppColors.appGrey,
+                                  color: Theme.of(context).accentColor,
                                   height: 1.4,
                                 ),
                               ),
                             ),
                             Divider(
                               thickness: 2.0,
-                              color: AppColors.appLightGrey,
+                              color: Theme.of(context).canvasColor,
                             ),
                             Padding(
                               padding: const EdgeInsets.only(
@@ -145,7 +144,7 @@ class _SimpleResultState extends State<SimpleResult> {
                                 style: GoogleFonts.montserrat(
                                   fontSize: 12.sp,
                                   fontWeight: FontWeight.normal,
-                                  color: AppColors.appGrey,
+                                  color: Theme.of(context).accentColor,
                                   height: 1.4,
                                 ),
                               ),

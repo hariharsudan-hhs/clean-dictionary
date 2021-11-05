@@ -1,4 +1,4 @@
-import 'package:clean_dictionary/constants/app_colors.dart';
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:clean_dictionary/constants/app_constants.dart';
 import 'package:clean_dictionary/models/result_model.dart';
 import 'package:clean_dictionary/screens/AboutPage.dart';
@@ -7,6 +7,7 @@ import 'package:clean_dictionary/widgets/detailed_result/detailed_result.dart';
 import 'package:clean_dictionary/widgets/simple_result/simple_result.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:sizer/sizer.dart';
 
 class ResultPage extends StatefulWidget {
   late final ResultModel resultModel;
@@ -30,7 +31,6 @@ class _ResultPageState extends State<ResultPage> {
   late List<Definitions> definitions = [];
 
   void handlePopUpClick(String value) {
-    print(value);
     switch (value) {
       case AppConstants.popupSwitchToDetailedView:
         setState(() {
@@ -43,6 +43,10 @@ class _ResultPageState extends State<ResultPage> {
         });
         break;
       case AppConstants.popupSwitchToDarkMode:
+        AdaptiveTheme.of(context).setDark();
+        break;
+      case AppConstants.popupSwitchToLightMode:
+        AdaptiveTheme.of(context).setLight();
         break;
       case AppConstants.popupShare:
         break;
@@ -81,9 +85,9 @@ class _ResultPageState extends State<ResultPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      // backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        // backgroundColor: Colors.white,
         elevation: 0.0,
         leadingWidth: 100.0,
         leading: InkWell(
@@ -94,7 +98,11 @@ class _ResultPageState extends State<ResultPage> {
               alignment: Alignment.centerLeft,
               child: Text(
                 AppConstants.navBack,
-                style: kNavTextStyle,
+                style: GoogleFonts.montserrat(
+                  fontSize: 10.sp,
+                  fontWeight: FontWeight.normal,
+                  color: Theme.of(context).primaryColor,
+                ),
               ),
             ),
           ),
@@ -106,7 +114,11 @@ class _ResultPageState extends State<ResultPage> {
                 padding: const EdgeInsets.only(left: 24.0, right: 24.0),
                 child: Text(
                   AppConstants.navMore,
-                  style: kNavTextStyle,
+                  style: GoogleFonts.montserrat(
+                    fontSize: 10.sp,
+                    fontWeight: FontWeight.normal,
+                    color: Theme.of(context).primaryColor,
+                  ),
                 ),
               ),
             ),
@@ -117,9 +129,12 @@ class _ResultPageState extends State<ResultPage> {
             // ),
             onSelected: handlePopUpClick,
             itemBuilder: (BuildContext context) {
+              var _isLight = AdaptiveTheme.of(context).mode.isLight;
+              print(AdaptiveTheme.of(context).mode.isLight);
               return {
                 _isSimple ? AppConstants.popupSwitchToDetailedView : AppConstants.popupSwitchToSimpleView,
-                AppConstants.popupSwitchToDarkMode,
+                // ignore: unrelated_type_equality_checks
+                _isLight ? AppConstants.popupSwitchToDarkMode : AppConstants.popupSwitchToLightMode,
                 AppConstants.popupShare,
                 AppConstants.popupAbout,
               }.map((String choice) {
@@ -128,7 +143,7 @@ class _ResultPageState extends State<ResultPage> {
                   child: Text(
                     choice,
                     style: GoogleFonts.montserrat(
-                      color: AppColors.appBlack,
+                      color: Theme.of(context).primaryColor,
                     ),
                   ),
                 );

@@ -1,4 +1,3 @@
-import 'package:clean_dictionary/constants/app_colors.dart';
 import 'package:clean_dictionary/constants/app_constants.dart';
 import 'package:delayed_display/delayed_display.dart';
 import 'package:flutter/material.dart';
@@ -9,9 +8,9 @@ class AboutPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      // backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        // backgroundColor: Theme.of(context).backgroundColor,
         elevation: 0.0,
         automaticallyImplyLeading: false,
         actions: [
@@ -24,7 +23,11 @@ class AboutPage extends StatelessWidget {
                 padding: const EdgeInsets.only(left: 24.0, right: 24.0),
                 child: Text(
                   AppConstants.navClose,
-                  style: kNavTextStyle,
+                  style: GoogleFonts.montserrat(
+                    fontSize: 10.sp,
+                    fontWeight: FontWeight.normal,
+                    color: Theme.of(context).primaryColor,
+                  ),
                 ),
               ),
             ),
@@ -49,6 +52,7 @@ class AboutPage extends StatelessWidget {
                       Text(
                         AppConstants.aboutPage_MainText_1,
                         style: GoogleFonts.playfairDisplay(
+                          color: Theme.of(context).primaryColor,
                           fontSize: 36.sp,
                           fontWeight: FontWeight.bold,
                         ),
@@ -56,6 +60,7 @@ class AboutPage extends StatelessWidget {
                       Text(
                         AppConstants.aboutPage_MainText_2,
                         style: GoogleFonts.playfairDisplay(
+                          color: Theme.of(context).primaryColor,
                           fontSize: 48.sp,
                           fontWeight: FontWeight.bold,
                         ),
@@ -69,12 +74,13 @@ class AboutPage extends StatelessWidget {
                             style: GoogleFonts.montserrat(
                               fontSize: 12.sp,
                               fontWeight: FontWeight.normal,
-                              color: AppColors.appGrey,
+                              color: Theme.of(context).accentColor,
                             ),
                             children: <TextSpan>[
                               TextSpan(
                                 text: AppConstants.aboutPage_hhs,
                                 style: GoogleFonts.montserrat(
+                                  color: Theme.of(context).accentColor,
                                   decoration: TextDecoration.underline,
                                 ),
                               ),
@@ -98,7 +104,7 @@ class AboutPage extends StatelessWidget {
                           style: TextStyle(
                             fontSize: 10.sp,
                             fontWeight: FontWeight.normal,
-                            color: AppColors.appGrey,
+                            color: Theme.of(context).accentColor,
                           ),
                         ),
                       ),
@@ -118,7 +124,7 @@ class AboutPage extends StatelessWidget {
                             style: TextStyle(
                               fontSize: 10.sp,
                               fontWeight: FontWeight.normal,
-                              color: AppColors.appGrey,
+                              color: Theme.of(context).accentColor,
                               decoration: TextDecoration.underline,
                             ),
                           ),

@@ -1,9 +1,3 @@
-import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:sizer/sizer.dart';
-
-import 'app_colors.dart';
-
 class AppConstants {
   //app
   static const String appName = "Clean Dictionary";
@@ -64,9 +58,3 @@ class AppConstants {
   static const String popupShare = "Share";
   static const String popupAbout = "About";
 }
-
-final TextStyle kNavTextStyle = GoogleFonts.montserrat(
-  fontSize: 10.sp,
-  fontWeight: FontWeight.normal,
-  color: AppColors.appBlack,
-);

@@ -1,7 +1,6 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:clean_dictionary/animation/ShakeWidget.dart';
 import 'package:clean_dictionary/api/DictionaryApi.dart';
-import 'package:clean_dictionary/constants/app_colors.dart';
 import 'package:clean_dictionary/constants/app_constants.dart';
 import 'package:clean_dictionary/models/result_model.dart';
 import 'package:clean_dictionary/screens/AboutPage.dart';
@@ -67,25 +66,31 @@ class _SearchPageState extends State<SearchPage> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+      onTap: () {
+        // FocusManager.instance.primaryFocus?.unfocus();
+        FocusScopeNode currentFocus = FocusScope.of(context);
+        if (!currentFocus.hasPrimaryFocus && currentFocus.focusedChild != null) {
+          FocusManager.instance.primaryFocus?.unfocus();
+        }
+      },
       child: isLoading
           ? Scaffold(
-              backgroundColor: Colors.white,
+              // backgroundColor: Colors.white,
               body: DelayedDisplay(
                 delay: Duration(milliseconds: 150),
                 fadingDuration: Duration(milliseconds: 300),
                 slidingBeginOffset: const Offset(0.0, 0.0),
                 child: Center(
                   child: CircularProgressIndicator(
-                    color: AppColors.appBlack,
+                    color: Theme.of(context).primaryColor,
                   ),
                 ),
               ),
             )
           : Scaffold(
-              backgroundColor: Colors.white,
+              // backgroundColor: Colors.white,
               appBar: AppBar(
-                backgroundColor: Colors.white,
+                // backgroundColor: Colors.white,
                 elevation: 0.0,
                 automaticallyImplyLeading: false,
                 actions: [
@@ -97,7 +102,11 @@ class _SearchPageState extends State<SearchPage> with TickerProviderStateMixin {
                         padding: const EdgeInsets.only(left: 24.0, right: 24.0),
                         child: Text(
                           AppConstants.navAbout,
-                          style: kNavTextStyle,
+                          style: GoogleFonts.montserrat(
+                            fontSize: 10.sp,
+                            fontWeight: FontWeight.normal,
+                            color: Theme.of(context).primaryColor,
+                          ),
                         ),
                       ),
                     ),
@@ -134,11 +143,13 @@ class _SearchPageState extends State<SearchPage> with TickerProviderStateMixin {
                                 //   ),
                                 // ),
                                 AnimatedTextKit(
-                                  totalRepeatCount: 1,
+                                  isRepeatingAnimation: true,
+                                  totalRepeatCount: 2,
                                   animatedTexts: [
                                     TypewriterAnimatedText(
                                       AppConstants.searchPage_MainHeading,
                                       textStyle: GoogleFonts.playfairDisplay(
+                                        color: Theme.of(context).primaryColor,
                                         fontSize: 36.sp,
                                         fontWeight: FontWeight.bold,
                                       ),
@@ -178,12 +189,12 @@ class _SearchPageState extends State<SearchPage> with TickerProviderStateMixin {
                                       style: GoogleFonts.montserrat(
                                         fontSize: 12.sp,
                                         fontWeight: FontWeight.normal,
-                                        color: AppColors.appBlack,
+                                        color: Theme.of(context).primaryColor,
                                         height: 1.4,
                                       ),
                                     ),
                                     style: ButtonStyle(
-                                      overlayColor: MaterialStateProperty.all(AppColors.appLightGrey),
+                                      overlayColor: MaterialStateProperty.all(Theme.of(context).canvasColor),
                                     ),
                                   ),
                                 ),
@@ -203,6 +214,7 @@ class _SearchPageState extends State<SearchPage> with TickerProviderStateMixin {
                             Text(
                               AppConstants.searchPage_SubHeading,
                               style: GoogleFonts.playfairDisplay(
+                                color: Theme.of(context).primaryColor,
                                 fontSize: 24.sp,
                                 fontWeight: FontWeight.bold,
                               ),
@@ -218,7 +230,7 @@ class _SearchPageState extends State<SearchPage> with TickerProviderStateMixin {
                                       child: Text(
                                         sampleRecent[item],
                                         style: GoogleFonts.montserrat(
-                                          color: AppColors.appGrey,
+                                          color: Theme.of(context).accentColor,
                                           fontSize: 12.sp,
                                           fontWeight: FontWeight.normal,
                                           height: 1.4,

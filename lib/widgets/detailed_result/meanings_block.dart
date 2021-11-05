@@ -1,4 +1,3 @@
-import 'package:clean_dictionary/constants/app_colors.dart';
 import 'package:clean_dictionary/constants/app_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -12,7 +11,7 @@ Widget meaningsBlock(BuildContext context, String title, List<String> content) {
         Text(
           title.toUpperCase(),
           style: GoogleFonts.montserrat(
-            color: AppColors.appBlack,
+            color: Theme.of(context).primaryColor,
             fontSize: 12.sp,
             fontWeight: FontWeight.bold,
             height: 1.4,
@@ -30,7 +29,7 @@ Widget meaningsBlock(BuildContext context, String title, List<String> content) {
                     child: Text(
                       content[item].isNotEmpty ? content[item] : "",
                       style: GoogleFonts.montserrat(
-                        color: AppColors.appBlack,
+                        color: Theme.of(context).primaryColor,
                         fontWeight: FontWeight.w300,
                         fontSize: 12.sp,
                         height: 1.4,
@@ -41,7 +40,7 @@ Widget meaningsBlock(BuildContext context, String title, List<String> content) {
             : Text(
                 AppConstants.detailedPage_EmptyResult,
                 style: GoogleFonts.montserrat(
-                  color: AppColors.appBlack,
+                  color: Theme.of(context).primaryColor,
                   fontWeight: FontWeight.w300,
                   fontSize: 12.sp,
                   height: 1.4,

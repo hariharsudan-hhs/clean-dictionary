@@ -12,9 +12,9 @@ class ErrorPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      // backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        // backgroundColor: Colors.white,
         elevation: 0.0,
         automaticallyImplyLeading: false,
         actions: [
@@ -27,7 +27,11 @@ class ErrorPage extends StatelessWidget {
                 padding: const EdgeInsets.only(left: 24.0, right: 24.0),
                 child: Text(
                   AppConstants.navClose,
-                  style: kNavTextStyle,
+                  style: GoogleFonts.montserrat(
+                    fontSize: 10.sp,
+                    fontWeight: FontWeight.normal,
+                    color: Theme.of(context).primaryColor,
+                  ),
                 ),
               ),
             ),
@@ -52,6 +56,7 @@ class ErrorPage extends StatelessWidget {
                       Text(
                         statusCode == "500" ? AppConstants.error_Service : AppConstants.error_Word,
                         style: GoogleFonts.playfairDisplay(
+                          color: Theme.of(context).primaryColor,
                           fontSize: 36.sp,
                           fontWeight: FontWeight.bold,
                         ),
@@ -60,6 +65,7 @@ class ErrorPage extends StatelessWidget {
                       Text(
                         AppConstants.error_Unavailable,
                         style: GoogleFonts.playfairDisplay(
+                          color: Theme.of(context).primaryColor,
                           fontSize: 36.sp,
                           fontWeight: FontWeight.bold,
                         ),
@@ -68,6 +74,7 @@ class ErrorPage extends StatelessWidget {
                       Text(
                         statusCode == "500" ? AppConstants.error_InternetConfirmation : AppConstants.error_ConfirmationHeading,
                         style: GoogleFonts.montserrat(
+                          color: Theme.of(context).accentColor,
                           fontSize: 12.sp,
                           fontWeight: FontWeight.w300,
                         ),

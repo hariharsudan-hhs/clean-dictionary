@@ -1,6 +1,5 @@
 import 'dart:developer';
 
-import 'package:clean_dictionary/constants/app_colors.dart';
 import 'package:clean_dictionary/constants/app_constants.dart';
 import 'package:clean_dictionary/models/result_model.dart';
 import 'package:clean_dictionary/widgets/detailed_result/definition_block.dart';
@@ -89,7 +88,7 @@ class _DetailedResultState extends State<DetailedResult> {
                         style: GoogleFonts.playfairDisplay(
                           fontSize: 36.sp,
                           fontWeight: FontWeight.bold,
-                          color: AppColors.appBlack,
+                          color: Theme.of(context).primaryColor,
                         ),
                         children: [
                           TextSpan(
@@ -97,7 +96,7 @@ class _DetailedResultState extends State<DetailedResult> {
                             style: GoogleFonts.montserrat(
                               fontSize: 12.sp,
                               fontWeight: FontWeight.w300,
-                              color: AppColors.appGrey,
+                              color: Theme.of(context).accentColor,
                             ),
                           ),
                         ]),
@@ -112,7 +111,7 @@ class _DetailedResultState extends State<DetailedResult> {
                         style: GoogleFonts.notoSerif(
                           fontSize: 16.sp,
                           fontWeight: FontWeight.w200,
-                          color: AppColors.appBlack,
+                          color: Theme.of(context).primaryColor,
                         ),
                       ),
                       (widget.phoneticAudio != AppConstants.detailedPage_EmptyResult)
@@ -122,7 +121,7 @@ class _DetailedResultState extends State<DetailedResult> {
                               onPressed: () => handlePhoneticAudio(),
                               icon: Icon(
                                 Icons.volume_up,
-                                color: AppColors.appBlack,
+                                color: Theme.of(context).primaryColor,
                                 size: 24.0,
                               ),
                             )

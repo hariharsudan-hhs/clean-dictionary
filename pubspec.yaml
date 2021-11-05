@@ -47,6 +47,9 @@ dependencies:
   #animated text kit
   animated_text_kit: ^4.2.1
 
+  #adaptive theme
+  adaptive_theme: ^2.3.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

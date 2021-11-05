@@ -1,4 +1,3 @@
-import 'package:clean_dictionary/constants/app_colors.dart';
 import 'package:clean_dictionary/constants/app_constants.dart';
 import 'package:clean_dictionary/models/result_model.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +14,7 @@ Widget definitionBlock(BuildContext context, List<Definitions> definitions) {
         Text(
           AppConstants.detailedPage_Definitions.toUpperCase(),
           style: GoogleFonts.montserrat(
-            color: AppColors.appBlack,
+            color: Theme.of(context).primaryColor,
             fontSize: 12.sp,
             fontWeight: FontWeight.bold,
           ),
@@ -33,7 +32,7 @@ Widget definitionBlock(BuildContext context, List<Definitions> definitions) {
                   Text(
                     (mainItem + 1).toString() + ".",
                     style: GoogleFonts.montserrat(
-                      color: AppColors.appBlack,
+                      color: Theme.of(context).primaryColor,
                       fontSize: 12.sp,
                       fontWeight: FontWeight.w600,
                       height: 1.4,
@@ -49,7 +48,7 @@ Widget definitionBlock(BuildContext context, List<Definitions> definitions) {
                             ? Text(
                                 definitions[mainItem].definition,
                                 style: GoogleFonts.montserrat(
-                                  color: AppColors.appBlack,
+                                  color: Theme.of(context).primaryColor,
                                   fontSize: 12.sp,
                                   fontWeight: FontWeight.w300,
                                   height: 1.4,
@@ -61,7 +60,7 @@ Widget definitionBlock(BuildContext context, List<Definitions> definitions) {
                             ? Text(
                                 "\"" + definitions[mainItem].example + "\"",
                                 style: GoogleFonts.montserrat(
-                                  color: AppColors.appGrey,
+                                  color: Theme.of(context).accentColor,
                                   fontSize: 12.sp,
                                   fontWeight: FontWeight.w300,
                                   height: 1.4,
@@ -77,7 +76,7 @@ Widget definitionBlock(BuildContext context, List<Definitions> definitions) {
                             (index) => Text(
                               definitions[mainItem].synonyms[index]!,
                               style: GoogleFonts.montserrat(
-                                color: AppColors.appBlack,
+                                color: Theme.of(context).primaryColor,
                                 fontSize: 10.sp,
                                 fontWeight: FontWeight.w300,
                                 fontStyle: FontStyle.italic,

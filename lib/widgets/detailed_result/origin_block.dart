@@ -1,4 +1,3 @@
-import 'package:clean_dictionary/constants/app_colors.dart';
 import 'package:clean_dictionary/constants/app_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -14,7 +13,7 @@ Widget originBlock(BuildContext context, String origin) {
         Text(
           AppConstants.detailedPage_Origin.toUpperCase(),
           style: GoogleFonts.montserrat(
-            color: AppColors.appBlack,
+            color: Theme.of(context).primaryColor,
             fontSize: 12.sp,
             fontWeight: FontWeight.bold,
             height: 1.4,
@@ -24,7 +23,7 @@ Widget originBlock(BuildContext context, String origin) {
         Text(
           origin.isNotEmpty ? origin : AppConstants.detailedPage_EmptyResult,
           style: GoogleFonts.montserrat(
-            color: AppColors.appBlack,
+            color: Theme.of(context).primaryColor,
             fontWeight: FontWeight.w300,
             fontSize: 12.sp,
             height: 1.4,
