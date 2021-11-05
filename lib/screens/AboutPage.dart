@@ -87,16 +87,44 @@ class AboutPage extends StatelessWidget {
                 ),
                 Container(
                   height: 80.0,
-                  child: Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      AppConstants.appVersion,
-                      style: TextStyle(
-                        fontSize: 10.sp,
-                        fontWeight: FontWeight.normal,
-                        color: AppColors.appGrey,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          AppConstants.appVersion,
+                          style: TextStyle(
+                            fontSize: 10.sp,
+                            fontWeight: FontWeight.normal,
+                            color: AppColors.appGrey,
+                          ),
+                        ),
                       ),
-                    ),
+                      SizedBox(height: 8.0),
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: GestureDetector(
+                          onTap: () {
+                            showLicensePage(
+                                context: context,
+                                // applicationIcon: Image.asset(name)
+                                applicationName: "Clean Dictionary",
+                                applicationVersion: "1.0");
+                          },
+                          child: Text(
+                            AppConstants.aboutPage_viewLicenses,
+                            style: TextStyle(
+                              fontSize: 10.sp,
+                              fontWeight: FontWeight.normal,
+                              color: AppColors.appGrey,
+                              decoration: TextDecoration.underline,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 )
               ],

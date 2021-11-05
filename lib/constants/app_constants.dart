@@ -17,6 +17,7 @@ class AppConstants {
   static const String aboutPage_MainText_2 = "Dictionary.";
   static const String aboutPage_by = "By";
   static const String aboutPage_hhs = "HHS";
+  static const String aboutPage_viewLicenses = "View Licenses";
 
   //search page constants
   static const String searchPage_MainHeading = "Dictionary.";
