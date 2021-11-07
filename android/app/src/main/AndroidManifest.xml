@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.hhs.clean_dictionary">
    <application
-        android:label="clean_dictionary"
+        android:label="Clean Dictionary"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

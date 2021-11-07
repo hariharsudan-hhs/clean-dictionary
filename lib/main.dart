@@ -26,22 +26,22 @@ class MyApp extends StatelessWidget {
             elevation: 0.0,
             centerTitle: true,
             backgroundColor: Colors.white,
-            foregroundColor: AppColors.appBlack,
+            foregroundColor: Colors.black,
             iconTheme: IconThemeData(
-              color: AppColors.appBlack,
+              color: Colors.black,
             ),
             textTheme: TextTheme(
               button: TextStyle(
-                color: AppColors.appBlack,
+                color: Colors.black,
               ),
               headline6: TextStyle(
-                color: AppColors.appBlack,
+                color: Colors.black,
               ),
             ),
           ),
           brightness: Brightness.light,
           scaffoldBackgroundColor: Colors.white,
-          primaryColor: AppColors.appBlack,
+          primaryColor: Colors.black,
           accentColor: AppColors.appGrey,
           backgroundColor: Colors.white,
           canvasColor: AppColors.appLightGrey,
