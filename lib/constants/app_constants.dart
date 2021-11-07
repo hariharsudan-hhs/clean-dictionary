@@ -18,6 +18,8 @@ class AppConstants {
   static const String searchPage_SubHeading = "Recent";
   static const String searchPage_SearchBoxHint = "search here";
   static const String searchPage_SearchButtonText = "Search";
+  static const String searchPage_EmptyRecents = "No recent searches.";
+  static const String searchPage_RecentsShowAll = "+ Show All";
 
   //detailed page constants
   static const String detailedPage_Definitions = "Definitions";

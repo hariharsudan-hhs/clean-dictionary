@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:clean_dictionary/animation/ShakeWidget.dart';
 import 'package:clean_dictionary/api/DictionaryApi.dart';
@@ -6,10 +8,12 @@ import 'package:clean_dictionary/models/result_model.dart';
 import 'package:clean_dictionary/screens/AboutPage.dart';
 import 'package:clean_dictionary/screens/ErrorPage.dart';
 import 'package:clean_dictionary/transition/FadeRoute.dart';
+import 'package:clean_dictionary/widgets/history.dart';
 import 'package:clean_dictionary/widgets/search_box.dart';
 import 'package:delayed_display/delayed_display.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sizer/sizer.dart';
 
 import 'ResultPage.dart';
@@ -22,6 +26,7 @@ class SearchPage extends StatefulWidget {
 class _SearchPageState extends State<SearchPage> with TickerProviderStateMixin {
   DictionaryApi dictionaryApi = new DictionaryApi();
   final List<String> sampleRecent = ["Ambitious", "Gambling", "Human", "Problem"];
+  List<String> recentHistory = [];
   TextEditingController controller = new TextEditingController();
   bool isLoading = false;
 
@@ -51,11 +56,27 @@ class _SearchPageState extends State<SearchPage> with TickerProviderStateMixin {
       isLoading = false;
       // Navigator.push(context, MaterialPageRoute(builder: (context) => ResultPage(resultModel: resultModel)));
       Navigator.push(context, FadeRoute(page: ResultPage(resultModel: resultModel)));
-      isLoading = false;
+      addSearchWordToSharedPreference();
     } catch (e) {
       print(e.toString());
       isLoading = false;
       Navigator.push(context, FadeRoute(page: ErrorPage(statusCode: e.toString())));
+    }
+  }
+
+  void addSearchWordToSharedPreference() async {
+    String searchWord = controller.text.trim();
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    recentHistory = prefs.getStringList("history") ?? [];
+    if (searchWord.isNotEmpty) {
+      if (recentHistory.contains(searchWord)) {
+        recentHistory.removeWhere((word) {
+          return word.toLowerCase() == searchWord.toLowerCase();
+        });
+      }
+      recentHistory.add(searchWord);
+      log(recentHistory.toString());
+      prefs.setStringList("history", recentHistory);
     }
   }
 
@@ -206,10 +227,10 @@ class _SearchPageState extends State<SearchPage> with TickerProviderStateMixin {
                       ),
                       Container(
                         padding: const EdgeInsets.only(left: 24.0, right: 24.0),
-                        height: 30.h,
+                        height: 32.h,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: [
                             Text(
                               AppConstants.searchPage_SubHeading,
@@ -220,25 +241,28 @@ class _SearchPageState extends State<SearchPage> with TickerProviderStateMixin {
                               ),
                             ),
                             SizedBox(height: 16.0),
-                            Expanded(
-                              child: ListView.builder(
-                                  physics: new NeverScrollableScrollPhysics(),
-                                  itemCount: sampleRecent.length,
-                                  itemBuilder: (context, item) {
-                                    return Container(
-                                      margin: EdgeInsets.symmetric(vertical: 4.0, horizontal: 2.0),
-                                      child: Text(
-                                        sampleRecent[item],
-                                        style: GoogleFonts.montserrat(
-                                          color: Theme.of(context).accentColor,
-                                          fontSize: 12.sp,
-                                          fontWeight: FontWeight.normal,
-                                          height: 1.4,
-                                        ),
-                                      ),
-                                    );
-                                  }),
+                            history(context, recentHistory),
+                            SizedBox(height: 8.0),
+                            Align(
+                              alignment: Alignment.center,
+                              child: TextButton(
+                                child: Text(
+                                  AppConstants.searchPage_RecentsShowAll,
+                                  style: GoogleFonts.montserrat(
+                                    color: Theme.of(context).accentColor,
+                                    fontSize: 10.sp,
+                                    fontWeight: FontWeight.normal,
+                                    height: 1.4,
+                                    decoration: TextDecoration.underline,
+                                  ),
+                                ),
+                                style: ButtonStyle(
+                                  overlayColor: MaterialStateProperty.all(Theme.of(context).canvasColor),
+                                ),
+                                onPressed: () {},
+                              ),
                             ),
+                            SizedBox(height: 24.0),
                           ],
                         ),
                       ),
