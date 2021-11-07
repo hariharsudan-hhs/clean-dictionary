@@ -7,6 +7,7 @@ import 'package:clean_dictionary/constants/app_constants.dart';
 import 'package:clean_dictionary/models/result_model.dart';
 import 'package:clean_dictionary/screens/AboutPage.dart';
 import 'package:clean_dictionary/screens/ErrorPage.dart';
+import 'package:clean_dictionary/screens/RecentsPage.dart';
 import 'package:clean_dictionary/transition/FadeRoute.dart';
 import 'package:clean_dictionary/widgets/history.dart';
 import 'package:clean_dictionary/widgets/search_box.dart';
@@ -80,8 +81,19 @@ class _SearchPageState extends State<SearchPage> with TickerProviderStateMixin {
     }
   }
 
+  void getRecentsFromSharedPreference() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    recentHistory = prefs.getStringList("history") ?? [];
+  }
+
   bool isPortrait() {
     return MediaQuery.of(context).orientation == Orientation.portrait;
+  }
+
+  @override
+  void initState() {
+    getRecentsFromSharedPreference();
+    super.initState();
   }
 
   @override
@@ -240,29 +252,37 @@ class _SearchPageState extends State<SearchPage> with TickerProviderStateMixin {
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
-                            SizedBox(height: 16.0),
-                            history(context, recentHistory),
+                            SizedBox(height: 24.0),
+                            history(context, recentHistory, recentHistory.length > 5 ? 5 : recentHistory.length, false),
                             SizedBox(height: 8.0),
-                            Align(
-                              alignment: Alignment.center,
-                              child: TextButton(
-                                child: Text(
-                                  AppConstants.searchPage_RecentsShowAll,
-                                  style: GoogleFonts.montserrat(
-                                    color: Theme.of(context).accentColor,
-                                    fontSize: 10.sp,
-                                    fontWeight: FontWeight.normal,
-                                    height: 1.4,
-                                    decoration: TextDecoration.underline,
+                            Visibility(
+                              visible: recentHistory.length > 3,
+                              child: Align(
+                                alignment: Alignment.bottomCenter,
+                                child: TextButton(
+                                  child: Text(
+                                    AppConstants.searchPage_RecentsShowAll,
+                                    style: GoogleFonts.montserrat(
+                                      color: Theme.of(context).accentColor,
+                                      fontSize: 10.sp,
+                                      fontWeight: FontWeight.normal,
+                                      height: 1.4,
+                                      decoration: TextDecoration.underline,
+                                    ),
                                   ),
+                                  style: ButtonStyle(
+                                    overlayColor: MaterialStateProperty.all(Theme.of(context).canvasColor),
+                                  ),
+                                  onPressed: () async {
+                                    await Navigator.push(context, FadeRoute(page: RecentsPage(recentHistory: recentHistory)));
+                                    setState(() {
+                                      getRecentsFromSharedPreference();
+                                    });
+                                  },
                                 ),
-                                style: ButtonStyle(
-                                  overlayColor: MaterialStateProperty.all(Theme.of(context).canvasColor),
-                                ),
-                                onPressed: () {},
                               ),
                             ),
-                            SizedBox(height: 24.0),
+                            SizedBox(height: 16.0),
                           ],
                         ),
                       ),
